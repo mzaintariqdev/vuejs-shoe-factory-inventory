@@ -73,7 +73,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next)=>{
    // Check if the route requires authentication
-   const isAuthenticated = false;/* logic to check if the user is authenticated */
+   const isAuthenticated = true;/* logic to check if the user is authenticated */
    if (to.meta.requiresAuth) {
     if (!isAuthenticated) {
       // If not authenticated, redirect to login page
