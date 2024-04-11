@@ -1,0 +1,9 @@
+export const homeUrl = '/';
+export const loginUrl = '/login';
+export const signUpUrl = '/signup';
+export const forgetPassUrl = '/forget-password';
+export const shoeArticlesUrl = '/shoe-articles';
+export const editShoeArticleUrl = `${shoeArticlesUrl}/:id`;
+export const employeesUrl = '/employee';
+export const editEmployeeUrl = `${employeesUrl}/:id`;
+export const settingUrl = '/settings';
