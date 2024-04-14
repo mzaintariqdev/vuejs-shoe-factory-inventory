@@ -6,7 +6,7 @@ import {
   forgetPassUrl,
   homeUrl,
   loginUrl,
-  settingUrl,
+  profileUrl,
   shoeArticlesUrl,
   signUpUrl,
 } from "./urls";
@@ -20,38 +20,45 @@ import Settings from "@/views/Settings/settings.vue";
 import Login from "@/views/Auth/Login/login.vue";
 import SignUp from "@/views/Auth/Signup/signUp.vue";
 import ForgetPassword from "@/views/Auth/ForgetPassword/forgetPassword.vue";
+import Layout from "@/components/Layout/Layout.vue";
 
 const routes = [
-  {
-    path: homeUrl,
-    component: Home, 
-    meta: { requiresAuth: true }
-  },
-  { 
-    path: employeesUrl,
-    component: Employees,
-    meta: { requiresAuth: true, roles: [roles.admin] },
-  },
-  { 
-    path: shoeArticlesUrl,
-    component: ShoeArticles,
-    meta: { requiresAuth: true, roles: [roles.admin] }
-  },
-  { 
-    path: editEmployeeUrl,
-    component: EditEmployee,
-    meta: { requiresAuth: true, roles: [roles.admin] }
-  },
-  { 
-    path: editShoeArticleUrl,
-    component: EditShoeArticle,
-    meta: { requiresAuth: true, roles: [roles.admin] }
-  },
-  { 
-    path: settingUrl,
-    component: Settings,
-    meta: { requiresAuth: true, roles: [roles.admin, roles.employee] }
-  },
+    {
+      path: homeUrl,
+      component: Layout,
+      children: [
+        {
+          path: '',
+          component: Home, 
+          meta: { requiresAuth: true }
+        },
+        { 
+          path: employeesUrl,
+          component: Employees,
+          meta: { requiresAuth: true, roles: [roles.admin] },
+        },
+        { 
+          path: shoeArticlesUrl,
+          component: ShoeArticles,
+          meta: { requiresAuth: true, roles: [roles.admin] }
+        },
+        { 
+          path: editEmployeeUrl,
+          component: EditEmployee,
+          meta: { requiresAuth: true, roles: [roles.admin] }
+        },
+        { 
+          path: editShoeArticleUrl,
+          component: EditShoeArticle,
+          meta: { requiresAuth: true, roles: [roles.admin] }
+        },
+        { 
+          path: profileUrl,
+          component: Settings,
+          meta: { requiresAuth: true, roles: [roles.admin, roles.employee] }
+        },
+      ],
+    },
   { 
     path: forgetPassUrl,
     component: ForgetPassword
@@ -117,3 +124,5 @@ router.beforeEach((to, from, next)=>{
 })
 
 export default router;
+
+
