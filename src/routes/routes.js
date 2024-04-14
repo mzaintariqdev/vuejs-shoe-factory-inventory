@@ -17,7 +17,7 @@ import ShoeArticles from "@/views/ShoeArticles/shoeArticles.vue";
 import EditEmployee from "@/views/EditEmployee/editEmployee.vue";
 import EditShoeArticle from "@/views/EditShoeArticle/editShoeArticle.vue";
 import Settings from "@/views/Settings/settings.vue";
-import Login from "@/views/Auth/Login/login.vue";
+import Login from "@/views/Auth/Login/Login.vue";
 import SignUp from "@/views/Auth/Signup/signUp.vue";
 import ForgetPassword from "@/views/Auth/ForgetPassword/forgetPassword.vue";
 import Layout from "@/components/Layout/Layout.vue";
@@ -80,7 +80,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next)=>{
    // Check if the route requires authentication
-   const isAuthenticated = true;/* logic to check if the user is authenticated */
+   const isAuthenticated = false;/* logic to check if the user is authenticated */
    if (to.meta.requiresAuth) {
     if (!isAuthenticated) {
       // If not authenticated, redirect to login page

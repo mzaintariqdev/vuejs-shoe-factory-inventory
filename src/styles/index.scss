@@ -1,0 +1,37 @@
+@forward 'variables' as variables-*;
+@forward 'mixins' as mixins-*;
+
+@use 'variables';
+@use 'mixins';
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&family=Pacifico&family=Poppins:wght@500&family=Raleway:wght@100;200;300;400;500;600;700;800;900&family=Roboto&display=swap');
+
+html {
+  font-family: 'Poppins' !important;
+
+  .ant-col.ant-form-item-label {
+    text-align: start !important;
+
+    label {
+      @include mixins.style-font-format(11px, 16px, 500, none, 0.01em);
+      color: variables.$light-blue-1 !important;
+    }
+
+    .ant-form-item-required::before,
+    ::after {
+      display: none;
+    }
+  }
+
+  .ant-input {
+    @include mixins.style-font-format(13px, 20px, 400, none, 0.01em);
+    color: variables.$dark-gray-1;
+    border: 0;
+    border-bottom: 1px solid variables.$light-gray-1;
+  }
+
+  .ant-input-password {
+    border: 0;
+    border-bottom: 1px solid variables.$light-gray-1;
+  }
+}

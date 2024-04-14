@@ -5,6 +5,7 @@ import store from './store/index'
 
 import Antd from 'ant-design-vue';
 import 'ant-design-vue/dist/reset.css';
+import './styles/index.scss';
 
 const app = createApp(App);
 

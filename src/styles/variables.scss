@@ -1,0 +1,30 @@
+$grid-breakpoints: (
+  'xs': 0,
+  'sm': 576px,
+  'm': 768px,
+  'l': 992px,
+  'xl': 1200px,
+  'xxl': 1400px,
+) !default;
+
+// valid border sides
+$valid-sides: top, left, bottom, right;
+
+// valid border styles
+$border-styles: dotted, dashed, hidden, none, solid, double, groove, ridge, inset, outset;
+
+// valid text transform values
+$text-transform-values: uppercase, lowercase, capitalize, none, initial, inherit;
+
+// colors
+
+$white: white;
+$white-smoke: whitesmoke;
+$light-blue-1: #109cf1;
+$light-blue-2: rgba(16, 156, 241, 0.24);
+$light-gray-1: #818e9b;
+$light-gray-2: #ebeff2;
+$light-gray-3: #192a3e;
+$dark-gray-1: #323c47;
+
+

@@ -1,0 +1,120 @@
+@use '../../../styles/index.scss' as styles;
+
+.login-page {
+  @include styles.mixins-style-flex-column;
+  align-items: center;
+  min-width: 100vw;
+  min-height: 100vh;
+  width: calc(100% - 80px);
+  line-height: 35px;
+  background: styles.$variables-white-smoke;
+
+  .LogInForm {
+    width: calc(100% - 80px);
+    margin-top: 32px;
+    min-height: 686px;
+    background: styles.$variables-white-smoke;
+    @include styles.mixins-style-flex-column;
+    align-items: center;
+    justify-content: center;
+
+    .login-form {
+      min-height: 307px;
+      min-width: 400px;
+      background: styles.$variables-white;
+      @include styles.mixins-style-box-shadow(0px, 6px, 18px, $color: rgba(0, 0, 0, 0.3));
+      border-radius: 4px;
+
+      &__title {
+        @include styles.mixins-style-font-format(18px, 27px, 500, none, 0.01em);
+        padding: 30px 0 10px 30px;
+        color: styles.$variables-dark-gray-1;
+      }
+
+      &__container {
+        border-top: 1px solid styles.$variables-light-gray-2;
+        padding: 0 25px;
+
+        .register-link {
+          @include styles.mixins-style-font-format(11px, 20px, 500, none, 0.01em);
+          margin-top: 5px;
+          color: styles.$variables-light-blue-1;
+          cursor: pointer;
+        }
+
+        .actions {
+          @include styles.mixins-style-flex-row-space-between;
+          margin-top: 5px;
+
+            .login-button {
+              @include styles.mixins-style-font-format(13px, 20px, 600, none, 0.01em);
+              text-align: center;
+              color: styles.$variables-white;
+              width: 168px;
+              height: 40px;
+              background: styles.$variables-light-blue-1;
+              @include styles.mixins-style-box-shadow(0px, 4px, 10px,  $color: styles.$variables-light-blue-2);
+              border-radius: 4px;
+            }
+
+            .forget-btn {
+              @include styles.mixins-style-font-format(13px, 20px, 600, none, 0.01em);
+              border: none;
+              background: none;
+              text-align: center;
+              margin-bottom: 24px;
+              color: styles.$variables-light-blue-1;
+            
+              &:focus,
+              &:active {
+                color: styles.$variables-light-blue-1;
+              }
+            }
+
+          }
+      }
+    }
+  }
+}
+
+
+@media screen and (max-width: 544px) {
+  .login-form {
+    min-width: unset !important;
+    width: 100%;
+
+    &__container {
+      .actions{
+        .login-button{
+          min-width: 120px !important;
+          width: 100% !important;
+        }
+
+        .forget-btn{
+          font-size: smaller !important;
+        }
+
+      }
+    }
+  }
+}
+
+
+
+@media screen and (max-width: 386px) {
+  .login-form {
+    &__container {
+      .actions{
+        .login-button{
+          min-width: unset !important;
+          width: 100% !important;
+        }
+
+        .forget-btn{
+          font-size: x-small !important;
+        }
+
+      }
+    }
+  }
+}
