@@ -1,0 +1,12 @@
+.layout-content {
+  margin-left: 200px;
+}
+
+@media screen and (max-width: 986px) {
+  .layout-sidebar {
+    display: none;
+  }
+  .layout-content {
+    margin-left: 0;
+  }
+}
