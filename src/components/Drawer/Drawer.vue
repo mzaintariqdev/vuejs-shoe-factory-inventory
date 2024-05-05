@@ -2,7 +2,7 @@
   <a-drawer
     :title="props.drawerTitle"
     :placement="props.placement"
-    :closable="false"
+    :closable="true"
     :visible="props.open"
     @close="onClose"
   >

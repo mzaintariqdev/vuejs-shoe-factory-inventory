@@ -1,0 +1,31 @@
+@use '../../../../styles/index.scss' as styles;
+
+
+.custom-header {
+  @include styles.mixins-style-flex-row-space-between;
+  padding: 22px;
+  background: styles.$variables-white;
+
+  &__title {
+    @include styles.mixins-style-font-format(18px, 20px, 600, none, 0.01em);
+    color: styles.$variables-dark-blue-1;
+    margin-bottom: 0;
+  }
+
+
+  &__btn {
+    @include styles.mixins-style-font-format(18px, 20px, 600, none, 0.01em);
+    background: styles.$variables-dark-blue-1;
+    border-radius: 8px;
+    padding: 0 5px;
+    width: auto !important;
+    min-width: 150px;
+
+    &:active,
+    &:focus,
+    &:hover {
+      background: styles.$variables-dark-blue-1;
+    }
+  }
+
+}

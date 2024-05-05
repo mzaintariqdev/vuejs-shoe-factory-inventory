@@ -97,7 +97,7 @@ router.beforeEach((to, from, next)=>{
         next(homeUrl);
       } 
       else {
-        const userRoles = roles.employee;/* logic to get the user's roles */
+        const userRoles = roles.admin;/* logic to get the user's roles */
         if (to.meta.roles && !to.meta.roles.some(role => userRoles.includes(role))) {
           // If user doesn't have required roles, redirect to home page
           next(homeUrl);

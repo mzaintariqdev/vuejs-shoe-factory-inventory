@@ -2,7 +2,14 @@
 
 .sidebar {
   box-shadow: 4px -8px 16px styles.$variables-light-gray-1;
-
+  overflow: 'auto';
+  height: '100vh';
+  position: fixed;
+  left: 0; 
+  top: 0;
+  bottom: 0; 
+  
+  
   .logo {
     color: styles.$variables-light-blue-1;
     @include styles.mixins-style-font-format(16px, 20px, 700, none, 0.01em);
@@ -50,5 +57,8 @@
 @media screen and (max-width: 986px) {
   .sidebar {
     box-shadow: none;
+    position: relative;
+    left: unset; 
+    top: unset;
   }
 }

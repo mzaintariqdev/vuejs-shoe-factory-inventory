@@ -1,37 +1,94 @@
 <template>
-  <BTableSimple hover small caption-top responsive>
-    <caption>{{ caption }}</caption>
-    <colgroup>
-      <col v-for="colWidth in colWidths" :style="{ width: colWidth }" />
-    </colgroup>
-    <BThead head-variant="dark">
-      <BTr>
-        <BTh v-for="(header, index) in headers" :key="index" :colspan="header.colspan" :rowspan="header.rowspan">{{ header.label }}</BTh>
-      </BTr>
-    </BThead>
-    <BTbody>
-      <BTr v-for="(row, rowIndex) in rows" :key="rowIndex">
-        <BTh v-for="(cell, cellIndex) in row" :key="cellIndex" :rowspan="cell.rowspan" :class="cell.class">{{ cell.label }}</BTh>
-      </BTr>
-    </BTbody>
-    <BTfoot>
-      <BTr>
-        <BTd :colspan="colCount" variant="secondary" class="text-end"> Total Rows: <b>{{ rowCount }}</b> </BTd>
-      </BTr>
-    </BTfoot>
-  </BTableSimple>
+  <TableHeader
+    v-show="showHeader"
+    :showAddBtn="showAddBtn" 
+    :AddBtnText="AddBtnText"
+    :headerText="headerText"
+  />
+  <a-table
+    class="custom-table"
+    :pagination="hidePagination ? false : paginationConfig"
+    :columns="columns"
+    :data-source="data"
+    bordered
+  >
+    <template #bodyCell>
+    </template>
+  </a-table>
 </template>
 
 <script setup>
-import { defineProps } from 'vue';
+import TableHeader from './component/TableHeader/TableHeader.vue';
+
+
+const emits =defineEmits(['onChange', 'onSizeChange'])
 
 const props = defineProps({
-  caption: String,
-  colWidths: Array,
-  headers: Array,
-  rows: Array,
-  rowCount: Number,
+  hidePagination: {
+    type: Boolean,
+    default: false,
+  },
+  showHeader: {
+    type: Boolean,
+    default: true,
+  },
+  showAddBtn: {
+    type: Boolean,
+    default: true,
+  },
+  AddBtnText: {
+    type: String,
+  },
+  headerText: {
+    type: String,
+  },
+  total: {
+    type: Number,
+    default: 0
+  },
+  currentPage: {
+    type: Number,
+    default: 1
+  },
+  limit: {
+    type: Number,
+    default: 5
+  },
+  columns: {
+    type:  Array,
+    required: true,
+  },
+  data: {
+    type: Array,
+    default: []
+  }
 });
 
-const colCount = props.headers.reduce((total, header) => total + (header.colspan || 1), 0);
+const onChangeHandle = (page) => {
+  console.log(page);
+  emits('onChange', page);
+  paginationConfig.current=Number(page);
+}
+
+const onSizeChangeHandle = (_,showSizeChange) => {
+  console.log(showSizeChange);
+  emits('onSizeChange', showSizeChange);
+  paginationConfig.pageSize=Number(showSizeChange);
+}
+
+const paginationConfig = {
+  current: Number(props.currentPage), // Bind directly to reactive ref
+  pageSize: Number(props.limit),
+  pageSizeOptions: ['5', '10', '20', '30', '40'], // Page size options
+  showSizeChanger: true,
+  total: Number(props.total),
+  onChange: onChangeHandle,
+  onShowSizeChange: onSizeChangeHandle,
+}
+
+console.log(paginationConfig)
 </script>
+
+<style scoped lang="scss">
+@import './Table.scss';
+</style>
