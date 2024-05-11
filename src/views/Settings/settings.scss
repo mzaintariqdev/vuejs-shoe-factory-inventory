@@ -1,0 +1,14 @@
+@use '../../styles/index.scss' as styles;
+
+.settings {
+  background: styles.$variables-white;
+  max-width: 900px;
+  height: 100%;
+  padding: 20px;
+  border-radius: 8px;
+
+  &__profile {
+    @include styles.mixins-style-font-format(28px, 20px, 600, none, 0.01em);
+    margin-bottom: 20px;
+  }
+}

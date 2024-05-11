@@ -2,6 +2,20 @@
 
 .custom-table {
 
+  .actions {
+    .anticon {
+      margin-right: 5px;
+      cursor: pointer;
+        :deep(svg) {
+          @include styles.mixins-style-width-height(25px !important, 25px !important);
+        }
+
+        :last-child {
+          margin-right: 0px;
+        }
+
+    }
+  }
   :deep(.ant-table-bordered) {
  
     overflow: auto !important;

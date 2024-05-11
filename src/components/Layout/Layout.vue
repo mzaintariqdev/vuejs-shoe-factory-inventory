@@ -5,8 +5,8 @@
     </div>
     <a-layout class="layout-content">
       <Header />
-      <a-layout-content :style="{ padding: '25px', margin: '24px 16px 0', overflow: 'initial' }">
-        <div :style="{ padding: '24px' }">
+      <a-layout-content class="content">
+        <div class="content-container">
           <router-view></router-view>
         </div>
       </a-layout-content>

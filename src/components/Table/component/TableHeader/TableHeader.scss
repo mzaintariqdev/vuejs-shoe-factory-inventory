@@ -29,3 +29,16 @@
   }
 
 }
+
+@media screen and (max-width: 500px) {
+  .custom-header {  
+    &__title {
+      @include styles.mixins-style-font-format(12px, 20px, 600, none, 0.01em);
+    }
+ 
+    &__btn {
+      @include styles.mixins-style-font-format(12px, 20px, 600, none, 0.01em);
+    }
+  
+  } 
+}

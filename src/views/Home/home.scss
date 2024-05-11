@@ -1,0 +1,23 @@
+@use '../../styles/index.scss' as styles;
+
+
+.home-stats {
+  max-width: 800px;
+  
+  .ant-col {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .home-stats{
+    @include styles.mixins-style-flex-column;
+    width: 100%;
+    max-width: unset;
+
+    .ant-col {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+  }
+}

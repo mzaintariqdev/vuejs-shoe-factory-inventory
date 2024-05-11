@@ -12,12 +12,24 @@
     :data-source="data"
     bordered
   >
-    <template #bodyCell>
+    <template #bodyCell="{ column, text }">
+      <template v-if="column.dataIndex === 'operation'">
+        <span class="actions">
+            <EyeOutlined />
+        </span>
+        <span class="actions">
+            <DeleteOutlined />
+        </span>
+        <span class="actions" >
+          <EditOutlined />
+        </span>
+      </template>
     </template>
   </a-table>
 </template>
 
 <script setup>
+import { DeleteOutlined, EditOutlined, EyeOutlined } from '@ant-design/icons-vue';
 import TableHeader from './component/TableHeader/TableHeader.vue';
 
 
@@ -65,13 +77,11 @@ const props = defineProps({
 });
 
 const onChangeHandle = (page) => {
-  console.log(page);
   emits('onChange', page);
   paginationConfig.current=Number(page);
 }
 
 const onSizeChangeHandle = (_,showSizeChange) => {
-  console.log(showSizeChange);
   emits('onSizeChange', showSizeChange);
   paginationConfig.pageSize=Number(showSizeChange);
 }
@@ -86,7 +96,6 @@ const paginationConfig = {
   onShowSizeChange: onSizeChangeHandle,
 }
 
-console.log(paginationConfig)
 </script>
 
 <style scoped lang="scss">

@@ -4,12 +4,37 @@ export const employeeColumns = [
     dataIndex: 'name',
   },
   {
-    title: 'Cash Assets',
-    dataIndex: 'money',
-    key: 'money',
+    title: 'Email',
+    dataIndex: 'email',
   },
   {
-    title: 'Address',
-    dataIndex: 'address',
+    title: 'Department',
+    dataIndex: 'department',
+  },
+  {
+    title: '',
+    dataIndex: 'operation',
+    scopedSlots: { customRender: 'operation' },
+  },
+];
+
+
+export const shoeArticleColumns = [
+  {
+    title: 'Name',
+    dataIndex: 'name',
+  },
+  {
+    title: 'Colors',
+    dataIndex: 'noOfColors',
+  },
+  {
+    title: 'Article No',
+    dataIndex: 'articleNo',
+  },
+  {
+    title: '',
+    dataIndex: 'operation',
+    scopedSlots: { customRender: 'operation' },
   },
 ];
