@@ -13,21 +13,25 @@
         </template>
         <a-avatar :src="avatarSrc" style="cursor: pointer" />
       </a-popover>
+      <Drawer 
+        :placement="placement" 
+        :open="drawerOpen" 
+        @closed="handleDrawerClosed"
+      >
+      <div style="display: flex; flex-direction: row; justify-content: space-between">
+        <Sidebar />
+        <span @click="handleDrawerClosed" style="cursor: pointer; margin-top: 15px;">
+          <CloseOutlined style="font-size: 25px;"/>
+        </span>
+      </div>
+      </Drawer>
     </a-layout-header>
-    <Drawer 
-      :drawerTitle="drawerTitle" 
-      :placement="placement" 
-      :open="drawerOpen" 
-      @closed="handleDrawerClosed"
-    >
-      <Sidebar />
-    </Drawer>
   </div>
 </template>
 
 <script setup>
 import Drawer from '@/components/Drawer/Drawer.vue';
-import { MenuOutlined } from '@ant-design/icons-vue';
+import { CloseOutlined, MenuOutlined } from '@ant-design/icons-vue';
 import { ref, watchEffect } from 'vue';
 import Sidebar from '../Sidebar/Sidebar.vue';
 import { useRouter } from 'vue-router';

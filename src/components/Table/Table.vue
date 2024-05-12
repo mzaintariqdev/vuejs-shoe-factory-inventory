@@ -1,5 +1,6 @@
 <template>
   <TableHeader
+    @-on-add-btn-click="OnAddBtnClick"
     v-show="showHeader"
     :showAddBtn="showAddBtn" 
     :AddBtnText="AddBtnText"
@@ -33,7 +34,7 @@ import { DeleteOutlined, EditOutlined, EyeOutlined } from '@ant-design/icons-vue
 import TableHeader from './component/TableHeader/TableHeader.vue';
 
 
-const emits =defineEmits(['onChange', 'onSizeChange'])
+const emits =defineEmits(['onChange', 'onSizeChange', 'onAddBtnClick'])
 
 const props = defineProps({
   hidePagination: {
@@ -84,6 +85,11 @@ const onChangeHandle = (page) => {
 const onSizeChangeHandle = (_,showSizeChange) => {
   emits('onSizeChange', showSizeChange);
   paginationConfig.pageSize=Number(showSizeChange);
+}
+
+const OnAddBtnClick = ()=> {
+  emits('onAddBtnClick');
+  console.log('consol')
 }
 
 const paginationConfig = {

@@ -12,16 +12,19 @@
     headerText="Employees"
     @onChange="handleOnChange"
     @onSizeChange="handleOnSizeChange"
+    @OnAddBtnClick="handleAddBtnDrawer"
   />
+  <AddEmployeeDrawer :open="openDrawer" title="Add Employee" @onDrawerClose="handleCloseDrawer" />
 </template>
 <script setup>
+import AddEmployeeDrawer from './components/AddEmployeeDrawer/AddEmployeeDrawer.vue';
 import { employeeColumns } from '@/utils/columns.js';
 import Table from '@/components/Table/Table.vue';
 import { onMounted, ref, watch } from 'vue';
 import { mockEmployees } from '@/utils/mocks/mockEmployees';
 
 const data = mockEmployees;
-
+const openDrawer = ref(false);
 const currentPage = ref(1);
 const limit = ref(5);
 const tableData= ref([]);
@@ -30,6 +33,14 @@ const handleOnChange=(page)=>{
   currentPage.value=page;
 }
 
+const handleAddBtnDrawer =()=>{
+  openDrawer.value=true;
+}
+
+
+const handleCloseDrawer =()=>{
+  openDrawer.value=false;
+}
 
 const handleOnSizeChange=(pageSize)=>{
   limit.value=pageSize;

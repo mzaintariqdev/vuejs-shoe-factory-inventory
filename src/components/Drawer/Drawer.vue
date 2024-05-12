@@ -1,8 +1,9 @@
  <template>
   <a-drawer
+    :rootClassName="props.class"
     :title="props.drawerTitle"
     :placement="props.placement"
-    :closable="true"
+    :closable="props.closeable"
     :visible="props.open"
     @close="onClose"
   >
@@ -17,9 +18,17 @@ import { ref, defineProps, defineEmits } from 'vue';
       drawerTitle: {
         type: String,
       },
+      class: {
+        type: String,
+        default: ''
+      },
       placement:{
         type: String,
         default: "left"
+      },
+      closeable: {
+        type: Boolean,
+        default: false,
       },
       open: {
         type: Boolean,
@@ -31,3 +40,4 @@ const onClose = () => {
   emits('closed');
 };
 </script>
+

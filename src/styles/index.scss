@@ -23,15 +23,77 @@ html {
     }
   }
 
+  .ant-drawer.custom-drawer {
+      .ant-drawer-content-wrapper {
+        width: 100% !important;
+        max-width: 750px;
+
+        .ant-drawer-content {
+          .ant-drawer-wrapper-body {
+            .ant-drawer-header {
+              .ant-drawer-header-title {
+                .ant-drawer-close {
+                  display: none;
+                }
+
+                .ant-drawer-title {
+                  @include mixins.style-font-format(24px, 20px, 600, none, 0.01em);
+                  color: variables.$light-blue-1;
+                }
+              }
+            }
+          }
+        }
+      } 
+    }
+
+  
+
   .ant-input {
-    @include mixins.style-font-format(13px, 20px, 400, none, 0.01em);
+    border-radius: 0 !important;
+    @include mixins.style-font-format(14px !important, 20px, 400, none, 0.01em);
     color: variables.$dark-gray-1;
     border: 0;
     border-bottom: 1px solid variables.$light-gray-1;
   }
 
-  .ant-input-password {
+  .ant-input-number {
+    width: 100%;
+    border-radius: 0 !important;
+    @include mixins.style-font-format(14px !important, 20px, 400, none, 0.01em);
+    color: variables.$dark-gray-1;
     border: 0;
     border-bottom: 1px solid variables.$light-gray-1;
+  }
+
+  .ant-select-selector {
+    border-radius: 0 !important;
+    @include mixins.style-font-format(14px !important, 20px, 400 !important, none, 0.01em);
+    color: variables.$dark-gray-1 !important;
+    border: 0 !important;
+    border-bottom: 1px solid variables.$light-gray-1 !important;
+
+   .ant-select-selection-item {
+      @include mixins.style-font-format(14px !important, 20px, 400 !important, none, 0.01em);
+      color: variables.$dark-gray-1 !important;
+    }
+  }
+
+  textarea {
+    border: 1px solid variables.$light-gray-1 !important;
+  }
+
+  .ant-input-password {
+    border-radius: 0 !important;
+    border: 0;
+    border-bottom: 1px solid variables.$light-gray-1;
+  }
+
+  @media screen and (max-width: 390px) {
+    .ant-drawer {
+      .ant-drawer-content-wrapper {
+        width: 100% !important;
+      }
+    }
   }
 }

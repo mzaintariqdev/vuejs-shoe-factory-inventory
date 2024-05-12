@@ -1,7 +1,7 @@
 <template >
   <div class="custom-header">
     <p class="custom-header__title">{{ headerText }}</p>
-    <a-button v-show="showAddBtn" class="custom-header__btn" type="primary" >
+    <a-button v-show="showAddBtn" @click.prevent="onAddBtnClick" class="custom-header__btn" type="primary" >
     <template #icon>
       <PlusOutlined />
       Add {{ AddBtnText }}
@@ -17,7 +17,7 @@
 </style>
 <script setup>
 import { PlusOutlined } from '@ant-design/icons-vue';
-
+const emits =defineEmits(['OnAddBtnClick']);
 const props = defineProps({
   showAddBtn: {
     type: Boolean,
@@ -30,4 +30,9 @@ const props = defineProps({
     type: String,
   }
 })
+
+const onAddBtnClick = ()=>{
+  console.log('sasa')
+  emits('OnAddBtnClick');
+}
 </script>
