@@ -18,9 +18,9 @@
 import { shoeArticleColumns } from '@/utils/columns.js';
 import Table from '@/components/Table/Table.vue';
 import { onMounted, ref, watch } from 'vue';
-import { dummyShoeArticle } from '@/utils/dmmyData';
+import { mockShoeArticle } from '@/utils/mocks/mockShoeArticles';
 
-const data = dummyShoeArticle;
+const data = mockShoeArticle;
 
 const currentPage = ref(1);
 const limit = ref(5);

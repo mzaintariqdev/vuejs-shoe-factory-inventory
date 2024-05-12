@@ -29,6 +29,9 @@
 <script setup>
 import { forgetPassUrl } from '@/routes/urls';
 import { reactive, ref } from 'vue';
+import { useStore } from 'vuex';
+
+const store = useStore();
 
 const formLayout = reactive({
   layout: 'vertical'
@@ -65,6 +68,7 @@ const onSubmit = () => {
   formRef.value.validate()
     .then(() => {
       // Form is valid, handle login logic here
+      store.dispatch('login', { email: formState.value.email, password: formState.value.password });
       console.log('Login successful',formState.value); 
     })
     .catch(() => {

@@ -31,6 +31,7 @@ import { MenuOutlined } from '@ant-design/icons-vue';
 import { ref, watchEffect } from 'vue';
 import Sidebar from '../Sidebar/Sidebar.vue';
 import { useRouter } from 'vue-router';
+import { useStore } from 'vuex';
 
 const drawerTitle = 'My Drawer Title';
 const placement = 'left';
@@ -38,7 +39,7 @@ const drawerOpen = ref(false);
 const windowSize = ref(window.innerWidth);
 const visible = ref(false);
 const router = useRouter()
-
+const store = useStore();
 
 const goToProfile = () => {
   // Navigate to the profile route
@@ -48,6 +49,7 @@ const goToProfile = () => {
 
 const signOut = () => {
   // Perform sign-out logic
+  store.dispatch('signout');
   console.log('Signing out...');
   hide();
 };

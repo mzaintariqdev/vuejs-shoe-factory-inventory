@@ -18,9 +18,9 @@
 import { employeeColumns } from '@/utils/columns.js';
 import Table from '@/components/Table/Table.vue';
 import { onMounted, ref, watch } from 'vue';
-import { dummyEmployees } from '@/utils/dmmyData';
+import { mockEmployees } from '@/utils/mocks/mockEmployees';
 
-const data = dummyEmployees;
+const data = mockEmployees;
 
 const currentPage = ref(1);
 const limit = ref(5);

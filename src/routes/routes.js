@@ -21,6 +21,7 @@ import Login from "@/views/Auth/Login/Login.vue";
 import SignUp from "@/views/Auth/Signup/signUp.vue";
 import ForgetPassword from "@/views/Auth/ForgetPassword/forgetPassword.vue";
 import Layout from "@/components/Layout/Layout.vue";
+import store from "@/store";
 
 const routes = [
     {
@@ -80,7 +81,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next)=>{
    // Check if the route requires authentication
-   const isAuthenticated = true;/* logic to check if the user is authenticated */
+   const isAuthenticated = store.getters.isAuthenticated; /* logic to check if the user is authenticated */
    if (to.meta.requiresAuth) {
     if (!isAuthenticated) {
       // If not authenticated, redirect to login page
@@ -97,7 +98,8 @@ router.beforeEach((to, from, next)=>{
         next(homeUrl);
       } 
       else {
-        const userRoles = roles.admin;/* logic to get the user's roles */
+        const user = store.getters.getUser;/* logic to get the user's roles */
+        const userRoles = user?.userType;
         if (to.meta.roles && !to.meta.roles.some(role => userRoles.includes(role))) {
           // If user doesn't have required roles, redirect to home page
           next(homeUrl);

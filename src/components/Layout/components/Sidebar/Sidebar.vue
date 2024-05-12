@@ -23,6 +23,7 @@ import { ref, onMounted, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import { SidebarRoutes } from './constants';
 import { roles } from '@/routes/roles';
+import store from '@/store';
 
 const route = useRoute();
 const selectedKeys = ref(['/']);
@@ -34,7 +35,8 @@ onMounted(() => {
 
 // Array of routes
 const routes = ref(SidebarRoutes);
-const userRole = roles.admin;
+const user = store.getters.getUser;/* logic to get the user's roles */
+const userRole = user?.userType;
 
 const allowedRoutes = ref([]);
 
