@@ -11,6 +11,7 @@
     AddBtnText="Shoe Article"
     headerText="Shoe Articles"
     @onDeleteIconClick="showModal"
+    @onEditIconClick="redirectToEditPage"
     @onViewIconClick="handleDetailDrawer"
     @onChange="handleOnChange"
     @onSizeChange="handleOnSizeChange"
@@ -28,6 +29,8 @@ import { mockShoeArticle } from '@/utils/mocks/mockShoeArticles';
 import AddShoeArticleDrawer from './components/AddShoeArticleDrawer/AddShoeArticleDrawer.vue';
 import ShoeArticleDeleteModal from './components/ShoeArticleDeleteModal/ShoeArticleDeleteModal.vue';
 import ShoeArticleDetailDrawer from './components/ShoeArticleDetailDrawer/ShoeArticleDetailDrawer.vue';
+import { useRouter } from 'vue-router';
+import { shoeArticlesUrl } from '@/routes/urls';
 
 const data = mockShoeArticle;
 const visibleModal = ref(false);
@@ -38,6 +41,11 @@ const currentPage = ref(1);
 const limit = ref(5);
 const tableData= ref([]);
 const total= ref(data.length);
+const router = useRouter();
+
+const redirectToEditPage = (id) =>{
+  router.push(`${shoeArticlesUrl}/${id}`)
+}
 
 
 const handleDetailDrawer = (record) => {

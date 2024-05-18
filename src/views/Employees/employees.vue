@@ -11,6 +11,7 @@
     AddBtnText="Employees"
     headerText="Employees"
     @onDeleteIconClick="showModal"
+    @onEditIconClick="redirectToEditPage"
     @onViewIconClick="handleDetailDrawer"
     @onChange="handleOnChange"
     @onSizeChange="handleOnSizeChange"
@@ -29,6 +30,8 @@ import { onMounted, ref, watch } from 'vue';
 import { mockEmployees } from '@/utils/mocks/mockEmployees';
 import DeleteEmployeeModal from './components/DeleteEmployeeModal/DeleteEmployeeModal.vue';
 import EmployeeDetailDrawer from './components/EmployeeDetailDrawer/EmployeeDetailDrawer.vue';
+import { useRouter } from 'vue-router';
+import { employeesUrl } from '@/routes/urls';
 
 const visibleModal = ref(false);
 const selectedRow = ref(null);
@@ -39,6 +42,11 @@ const currentPage = ref(1);
 const limit = ref(5);
 const tableData= ref([]);
 const total= ref(data.length);
+const router = useRouter();
+
+const redirectToEditPage = (id) =>{
+  router.push(`${employeesUrl}/${id}`)
+}
 
 const handleOnChange=(page)=>{
   currentPage.value=page;

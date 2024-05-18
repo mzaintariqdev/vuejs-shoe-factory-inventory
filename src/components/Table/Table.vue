@@ -24,7 +24,7 @@
         <span @click="onDelete(record)" class="actions">
             <DeleteOutlined />
         </span>
-        <span class="actions" >
+        <span @click="onEdit(record?.id)" class="actions" >
           <EditOutlined />
         </span>
       </template>
@@ -37,7 +37,7 @@ import { DeleteOutlined, EditOutlined, EyeOutlined } from '@ant-design/icons-vue
 import TableHeader from './component/TableHeader/TableHeader.vue';
 
 
-const emits =defineEmits(['onChange', 'onSizeChange', 'onAddBtnClick', 'onDeleteIconClick', 'onViewIconClick'])
+const emits =defineEmits(['onChange', 'onSizeChange', 'onAddBtnClick', 'onDeleteIconClick', 'onViewIconClick', 'onEditIconClick']);
 
 const props = defineProps({
   hidePagination: {
@@ -83,6 +83,10 @@ const props = defineProps({
 const onChangeHandle = (page) => {
   emits('onChange', page);
   paginationConfig.current=Number(page);
+}
+
+const onEdit = (id) => {
+  emits('onEditIconClick', id)
 }
 
 const onView = (record) => {
