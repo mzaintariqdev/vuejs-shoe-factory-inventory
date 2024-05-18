@@ -167,7 +167,8 @@ const onSubmit = () => {
   validate()
     .then(res => {
       console.log(res, toRaw(modelRef));
-      // resetFields();
+      resetFields();
+      closeDrawer();
     })
     .catch(err => {
       console.log('error', err);

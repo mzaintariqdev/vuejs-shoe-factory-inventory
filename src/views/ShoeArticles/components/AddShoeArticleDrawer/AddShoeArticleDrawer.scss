@@ -1,0 +1,75 @@
+@use '../../../../styles/index.scss' as styles;
+
+.add-shoe-article__form {
+  .input__container {
+    .ant-col {
+      .add-shoe-article__form-input {
+          :deep(.ant-form-item-label) {
+           text-align: start !important;
+         
+           label {
+            font-size: 14px !important;
+           }
+        }
+      }
+    } 
+  }
+
+  .actions {
+    @include styles.mixins-style-flex-row-v-center;
+    margin-top: 10px;
+    
+    .cancel-button {
+      margin-left: 10px;
+      @include styles.mixins-style-font-format(13px, 20px, 600, none, 0.01em);
+      @include styles.mixins-style-width-height(168px, 40px);
+      text-align: center;
+      color: styles.$variables-light-blue-1;
+      background: styles.$variables-white;
+      border: 3px solid styles.$variables-light-blue-2;
+      border-radius: 4px;
+    }
+  
+    .add-shoe-article-button {
+      @include styles.mixins-style-font-format(13px, 20px, 600, none, 0.01em);
+      @include styles.mixins-style-width-height(168px, 40px);
+      text-align: center;
+      color: styles.$variables-white;
+      background: styles.$variables-light-blue-1;
+      @include styles.mixins-style-box-shadow(0px, 4px, 10px,  $color: styles.$variables-light-blue-2);
+      border-radius: 4px;
+     }
+  }
+}
+
+
+@media screen and (max-width: 600px) {
+  .add-shoe-article__form {
+    .input__container {
+        @include styles.mixins-style-flex-column;
+
+        .ant-col {
+          width: 100% !important;
+          max-width: unset;
+        }
+      }
+
+      .actions {
+        @include styles.mixins-style-flex-column;
+        width: 100%;
+
+        .ant-form-item {
+          width: 100%;
+          .cancel-button {
+            margin-left: 0;
+            width: 100%;
+          }
+  
+          .add-shoe-article-button {
+            width: 100%;
+          }
+        }
+  
+      }
+  }
+}

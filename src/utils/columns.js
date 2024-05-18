@@ -26,7 +26,7 @@ export const shoeArticleColumns = [
   },
   {
     title: 'Colors',
-    dataIndex: 'noOfColors',
+    dataIndex: 'colors',
   },
   {
     title: 'Article No',

@@ -89,6 +89,32 @@ html {
     border-bottom: 1px solid variables.$light-gray-1;
   }
 
+  .ant-modal .ant-modal-content {
+    padding: 0;
+
+    .ant-modal-close {
+      color: variables.$white;
+    }
+  
+    .ant-modal-header {
+      padding: 22px;
+      background: variables.$dark-blue-1;
+
+      .ant-modal-title {
+        color: variables.$white;
+        @include mixins.style-font-format(16px !important, 20px, 600 !important, none, 0.01em);
+      }
+    }
+
+    .ant-modal-body {
+      padding: 0 22px;
+    }
+
+    .ant-modal-footer {
+      display: none;
+    }
+  }
+
   @media screen and (max-width: 390px) {
     .ant-drawer {
       .ant-drawer-content-wrapper {

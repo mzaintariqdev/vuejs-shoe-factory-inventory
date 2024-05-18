@@ -1,0 +1,33 @@
+@use '../../styles/index.scss' as styles;
+
+
+.tag-label-comp {
+
+  margin-bottom: 20px;
+  
+  &__label {
+    @include styles.mixins-style-font-format(18px, 20px, 600, none, 0.01em);
+    text-transform: capitalize;
+  }
+
+  &__value {
+
+    .ant-tag {
+      @include styles.mixins-style-font-format(14px, 20px, 600, none, 0.01em);
+      text-transform: capitalize;
+    }
+  }
+}
+
+@media screen and (max-width: 550px) {
+
+  .tag-label-comp {
+
+    &__value {
+      .ant-tag {
+        margin-bottom: 10px;
+      }
+    }
+  }
+  
+}

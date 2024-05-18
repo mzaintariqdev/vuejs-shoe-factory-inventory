@@ -10,11 +10,16 @@
     :limit="limit"
     AddBtnText="Employees"
     headerText="Employees"
+    @onDeleteIconClick="showModal"
+    @onViewIconClick="handleDetailDrawer"
     @onChange="handleOnChange"
     @onSizeChange="handleOnSizeChange"
     @OnAddBtnClick="handleAddBtnDrawer"
   />
   <AddEmployeeDrawer :open="openDrawer" title="Add Employee" @onDrawerClose="handleCloseDrawer" />
+  <DeleteEmployeeModal :rowData="selectedRow" :visible="visibleModal" @closeHandle="closeModal" />
+  <EmployeeDetailDrawer :rowData="selectedRow" :open="openDetailDrawer" title="Employee Details" @onDrawerClose="handleCloseDetailDrawer" />
+
 </template>
 <script setup>
 import AddEmployeeDrawer from './components/AddEmployeeDrawer/AddEmployeeDrawer.vue';
@@ -22,21 +27,44 @@ import { employeeColumns } from '@/utils/columns.js';
 import Table from '@/components/Table/Table.vue';
 import { onMounted, ref, watch } from 'vue';
 import { mockEmployees } from '@/utils/mocks/mockEmployees';
+import DeleteEmployeeModal from './components/DeleteEmployeeModal/DeleteEmployeeModal.vue';
+import EmployeeDetailDrawer from './components/EmployeeDetailDrawer/EmployeeDetailDrawer.vue';
 
+const visibleModal = ref(false);
+const selectedRow = ref(null);
 const data = mockEmployees;
 const openDrawer = ref(false);
+const openDetailDrawer = ref(false);
 const currentPage = ref(1);
 const limit = ref(5);
 const tableData= ref([]);
 const total= ref(data.length);
+
 const handleOnChange=(page)=>{
   currentPage.value=page;
 }
+
+const showModal = (record) => {
+  selectedRow.value = record;
+  visibleModal.value = true;
+};
+
+const closeModal = () => {
+  visibleModal.value = false;
+};
 
 const handleAddBtnDrawer =()=>{
   openDrawer.value=true;
 }
 
+const handleDetailDrawer = (record) => {
+  selectedRow.value = record;
+  openDetailDrawer.value= true;
+}
+
+const handleCloseDetailDrawer =()=>{
+  openDetailDrawer.value=false;
+}
 
 const handleCloseDrawer =()=>{
   openDrawer.value=false;

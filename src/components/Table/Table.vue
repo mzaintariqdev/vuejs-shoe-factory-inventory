@@ -13,12 +13,15 @@
     :data-source="data"
     bordered
   >
-    <template #bodyCell="{ column, text }">
+    <template #bodyCell="{ column, record }">
+      <template v-if="column.dataIndex === 'colors'">
+        {{ record?.colors?.length }}
+      </template>
       <template v-if="column.dataIndex === 'operation'">
-        <span class="actions">
+        <span @click="onView(record)" class="actions">
             <EyeOutlined />
         </span>
-        <span class="actions">
+        <span @click="onDelete(record)" class="actions">
             <DeleteOutlined />
         </span>
         <span class="actions" >
@@ -34,7 +37,7 @@ import { DeleteOutlined, EditOutlined, EyeOutlined } from '@ant-design/icons-vue
 import TableHeader from './component/TableHeader/TableHeader.vue';
 
 
-const emits =defineEmits(['onChange', 'onSizeChange', 'onAddBtnClick'])
+const emits =defineEmits(['onChange', 'onSizeChange', 'onAddBtnClick', 'onDeleteIconClick', 'onViewIconClick'])
 
 const props = defineProps({
   hidePagination: {
@@ -80,6 +83,14 @@ const props = defineProps({
 const onChangeHandle = (page) => {
   emits('onChange', page);
   paginationConfig.current=Number(page);
+}
+
+const onView = (record) => {
+  emits('onViewIconClick', record)
+}
+
+const onDelete = (record)=>{
+  emits('onDeleteIconClick', record)
 }
 
 const onSizeChangeHandle = (_,showSizeChange) => {
