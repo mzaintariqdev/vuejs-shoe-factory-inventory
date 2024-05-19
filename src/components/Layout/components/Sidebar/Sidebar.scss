@@ -1,0 +1,64 @@
+@use '../../../../styles/index.scss' as styles;
+
+.sidebar {
+  box-shadow: 4px -8px 16px styles.$variables-light-gray-1;
+  overflow: 'auto';
+  height: '100vh';
+  position: fixed;
+  left: 0; 
+  top: 0;
+  bottom: 0; 
+  
+  
+  .logo {
+    color: styles.$variables-light-blue-1;
+    @include styles.mixins-style-font-format(16px, 20px, 700, none, 0.01em);
+    padding: 20px 0 20px 16px;
+  }
+
+  &.ant-layout-sider {
+    background: styles.$variables-white !important;
+
+    .ant-menu, .ant-menu-root, .ant-menu-vertical, .ant-menu-dark {
+      background-color: transparent !important;
+
+      :deep(.ant-menu-item) {
+        @include styles.mixins-style-font-format(13px, 20px, 500, none, 0.01em);
+        color: styles.$variables-dark-gray-1;
+
+        .nav-text {
+          transition: none !important;
+        }
+
+        &:active, &:focus, &:hover {
+          color: styles.$variables-dark-gray-1;
+          background: none !important;
+          background-color: transparent !important;
+        }
+
+        &.ant-menu-item-selected {
+          color: styles.$variables-light-blue-1;
+          background-color: transparent !important;
+
+          svg {
+            fill: styles.$variables-light-blue-1 !important;
+          }
+        }
+
+        svg {
+          fill: styles.$variables-light-gray-1 !important;
+        }
+      }
+    }
+  }
+}
+
+
+@media screen and (max-width: 986px) {
+  .sidebar {
+    box-shadow: none;
+    position: relative;
+    left: unset; 
+    top: unset;
+  }
+}

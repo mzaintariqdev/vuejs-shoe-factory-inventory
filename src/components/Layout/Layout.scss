@@ -1,0 +1,22 @@
+.layout-content {
+  margin-left: 200px;
+
+  .content {
+    padding: 25px 10px;
+    margin: 35px 0;
+    overflow: initial;
+
+    &-container {
+      padding: 24px 10px;
+    }
+  }
+}
+
+@media screen and (max-width: 986px) {
+  .layout-sidebar {
+    display: none;
+  }
+  .layout-content {
+    margin-left: 0;
+  }
+}

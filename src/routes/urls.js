@@ -6,4 +6,4 @@ export const shoeArticlesUrl = '/shoe-articles';
 export const editShoeArticleUrl = `${shoeArticlesUrl}/:id`;
 export const employeesUrl = '/employee';
 export const editEmployeeUrl = `${employeesUrl}/:id`;
-export const settingUrl = '/settings';
+export const profileUrl = '/profile';

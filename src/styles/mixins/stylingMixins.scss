@@ -1,0 +1,196 @@
+@use 'sass:list';
+@import '../variables';
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-start {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+@mixin flex-row-end {
+  @include flex-row;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+@mixin flex-row-reverse-end {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row-reverse;
+}
+
+@mixin flex-center-column {
+  @include flex-center;
+  flex-direction: column;
+}
+
+@mixin flex-row-space-between {
+  @include flex-row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-row-end-center {
+  @include flex-row-v-center;
+  justify-content: flex-end;
+}
+
+@mixin flex-row-space-between-start {
+  @include flex-row;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+@mixin flex-column-start {
+  @include flex-start;
+  flex-direction: column;
+}
+
+@mixin flex-center-row {
+  @include flex-center;
+  flex-direction: row;
+}
+
+@mixin flex-reverse-column {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+@mixin flex-column-start-center {
+  @include flex-column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+@mixin flex-column-end-center {
+  @include flex-column;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+@mixin flex-row-v-center {
+  @include flex-row;
+  align-items: center;
+}
+
+@mixin hover {
+  &:not([disabled]):hover {
+    @content;
+  }
+}
+
+/**
+Mixin to format font
+@param {String} $font-size
+@param {String} $line-height
+@param {String} $font-weight
+@param {String} $text-transform
+@param {String} $letter-spacing
+ */
+@mixin font-format(
+  $font-size,
+  $line-height: normal,
+  $font-weight: normal,
+  $text-transform: none,
+  $letter-spacing: normal,
+  $font-family: 'Poppins',
+) {
+  font-size: $font-size;
+  line-height: $line-height;
+  font-weight: $font-weight;
+  letter-spacing: $letter-spacing;
+  font-family: $font-family, sans-serif;
+
+  @if (list.index($text-transform-values, $text-transform)) {
+    text-transform: $text-transform;
+  } @else {
+    @warn "Invalid text transform value. Choose one of: `#{$text-transform-values}.";
+  }
+}
+
+
+/**
+Mixin to format border
+@param {String} $border-style - style of border
+@param {String} $border-width - width of the border
+@param {String} $border-color - color of the border
+@param {String} $border-radius - radius of the border
+  - 1 value: radius is set for all 4 sides
+  - 2 values: top-left-bottom-right | top-right-bottom-left
+  - 3 values: top-left | top-right-bottom-left | bottom-right
+  - 4 values: top-left | top-right | bottom-right | bottom-left
+@param {String[]} $border-sides - sides of the border to be styled
+@require $border-styles
+ */
+@mixin border(
+  $border-style,
+  $border-width: 0,
+  $border-color: transparent,
+  $border-radius: 0,
+  $border-sides: (top, bottom, left, right)
+) {
+  @if list.index($border-styles, $border-style) {
+    border-radius: $border-radius;
+    $border-sides-are-valid: sides-are-valid($border-sides);
+
+    @if not $border-sides-are-valid {
+      @warn "Border sides are not valid. Choose one of: `#{$valid-sides}.";
+    } @else {
+      @each $side in $valid-sides {
+        @if list.index($border-sides, $side) {
+          border: {
+            #{$side}: {
+              style: $border-style;
+              width: $border-width;
+              color: $border-color;
+            }
+          }
+        } @else {
+          border-#{$side}: none;
+        }
+      }
+    }
+  } @else {
+    @warn "Invalid border style! Please choose one of these: `#{map-keys($border-styles)}.`";
+  }
+}
+
+/*
+Mixin to set width and height of element
+@param {String} $width - width value with scalar
+@param {String} $height - height value with scalar
+@require $scalar-values
+ */
+@mixin width-height($width, $height) {
+  width: $width;
+  height: $height;
+}
+
+/**
+Mixin to truncate text and add ellipsis at the end.
+ */
+@mixin text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin box-shadow($top: 0, $right: 0, $bottom: 0, $left: 0, $color: transparent) {
+  box-shadow: $top $right $bottom $left $color;
+}

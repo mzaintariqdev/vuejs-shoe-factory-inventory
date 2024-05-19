@@ -1,23 +1,28 @@
-import './assets/main.css'
-
 import { createApp } from 'vue'
 import App from './App.vue'
-// Vuetify
-import 'vuetify/styles'
-import { createVuetify } from 'vuetify'
-import * as components from 'vuetify/components'
-import * as directives from 'vuetify/directives'
 import router from './routes/routes'
 import store from './store/index'
 
-
-const vuetify = createVuetify({
-  components,
-  directives,
-})
+import Antd from 'ant-design-vue';
+import 'ant-design-vue/dist/reset.css';
+import './styles/index.scss';
 
 const app = createApp(App);
-app.use(vuetify);
+
+app.use(Antd);
 app.use(store);
 app.use(router);
 app.mount('#app')
+
+// <!-- i have to create follwoign componnets and flow
+
+// 3. create login form
+// 4. create signup form
+// 5. create reset password form
+// 6. create table component 
+// 7. create employee list 
+// 8. shoe article list
+// 9. employee creation drawer
+// 10. employee delete model
+// 11. edit employee page
+// 12. employee details drawer

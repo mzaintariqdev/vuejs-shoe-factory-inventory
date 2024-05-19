@@ -1,0 +1,16 @@
+@use '../../../../styles/index.scss' as styles;
+
+.shoe-article-detail__actions {
+  @include styles.mixins-style-flex-row-end;
+  margin-top: 10px;
+
+  .close-button {
+    @include styles.mixins-style-font-format(13px, 20px, 600, none, 0.01em);
+    @include styles.mixins-style-width-height(168px, 40px);
+    text-align: center;
+    color: styles.$variables-white;
+    background: styles.$variables-light-blue-1;
+    @include styles.mixins-style-box-shadow(0px, 4px, 10px,  $color: styles.$variables-light-blue-2);
+    border-radius: 4px;
+  }
+}

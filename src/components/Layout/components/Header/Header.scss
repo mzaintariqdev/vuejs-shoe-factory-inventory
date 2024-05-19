@@ -1,0 +1,36 @@
+@use "../../../../styles/index.scss" as styles;
+
+.header {
+  position: fixed !important;
+  z-index: 1;
+  width: calc(100% - 200px) !important;
+  background: styles.$variables-white;
+  box-shadow: 4px -8px 16px styles.$variables-light-gray-1;
+  @include styles.mixins-style-flex-row-end-center;
+
+  .mobile-sidebar {
+    display: none;
+
+    :deep(.icon){
+
+      svg {  
+          width: 30px !important;
+          height: 25px !important;
+
+      }
+    }
+  }
+
+}
+
+
+@media screen and (max-width: 986px) {
+  .header { 
+    width: 100% !important;
+    @include styles.mixins-style-flex-row-space-between;
+
+    .mobile-sidebar {
+      @include styles.mixins-style-flex-column-start-center;
+    }
+  }
+}

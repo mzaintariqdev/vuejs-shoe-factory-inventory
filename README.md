@@ -1,5 +1,6 @@
 # shoe-factory-inventory
-
+using https://www.npmjs.com/package/ant-design-vue ant deisgn vue for cmponents, sass for customisation and vue-router for auth routing
+npm install --save @ant-design/icons-vue for icons
 This template should help get you started developing with Vue 3 in Vite.
 
 ## Recommended IDE Setup

@@ -1,0 +1,96 @@
+@use '../../styles/index.scss' as styles;
+
+.custom-table {
+
+  .actions {
+    .anticon {
+      margin-right: 5px;
+      cursor: pointer;
+        :deep(svg) {
+          @include styles.mixins-style-width-height(25px !important, 25px !important);
+        }
+
+        :last-child {
+          margin-right: 0px;
+        }
+
+    }
+  }
+  :deep(.ant-table-bordered) {
+ 
+    overflow: auto !important;
+
+    .ant-table-container {
+      min-width: 500px !important;
+
+      .ant-table-thead {
+        @include styles.mixins-style-width-height(100%, 48px);
+        border-bottom: 1px solid styles.$variables-light-gray-2;
+    
+        .ant-table-cell {
+          @include styles.mixins-style-font-format(13px, 20px, 600, none, 0.01em);
+          color: styles.$variables-light-blue-4;
+        }
+      }
+
+      .ant-table-tbody {
+        .ant-table-row {
+          border-bottom: 1px solid styles.$variables-light-gray-2;
+          min-height: 64px;
+          height: auto;
+          &:hover,
+          :active,
+          :focus {
+            background: styles.$variables-white;
+            box-shadow: 0px 2px 8px styles.$variables-dark-gray-2;
+          }
+          cursor: pointer;
+    
+          .ant-table-cell {
+            height: auto;
+            @include styles.mixins-style-font-format(13px, 20px, 400, none, 0.01em);
+            color: styles.$variables-light-blue-3;
+    
+            &:hover,
+            :active,
+            :focus {
+              background: none;
+              box-shadow: none;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  :deep(.ant-pagination) {
+    margin-top: 0;
+    padding: 15px 15px;
+    background: styles.$variables-white !important;
+
+    .ant-pagination-item {
+      @include styles.mixins-style-font-format(13px, none, 600, none, 0.01em);
+      color: styles.$variables-dark-blue-1;
+    }
+
+    .ant-pagination-item-active {
+      background: styles.$variables-dark-blue-1;
+      color: styles.$variables-white;
+      border-color: none;
+
+      a {
+        color: styles.$variables-white;
+
+       }
+    }
+
+    .ant-pagination-prev .ant-pagination-item-link {
+      color: styles.$variables-dark-blue-1;
+      
+    }
+
+    .ant-pagination-disabled .ant-pagination-item-link {
+      color: styles.$variables-light-gray-1 !important;
+    }
+  }
+}
