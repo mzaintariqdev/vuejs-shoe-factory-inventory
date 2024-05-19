@@ -27,14 +27,14 @@
       }
     })
 
-    const emits = defineEmits(['onCloseHandle']);
+    const emits = defineEmits(['onCloseHandle', 'OnOkHandle']);
 
     const onCloseHandle = () =>{
       emits('onCloseHandle');
     }
 
     const handleOk = e => {
-      emits('onCloseHandle');
+      emits('OnOkHandle');
     };
 
 </script>

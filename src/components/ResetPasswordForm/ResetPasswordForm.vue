@@ -11,8 +11,10 @@
 <script setup>
 import { reactive, toRaw } from 'vue';
 import { Form } from 'ant-design-vue';
+import { useStore } from 'vuex';
 const useForm = Form.useForm;
-
+const store = useStore();
+const user = store.getters.getUser;
 const modelRef = reactive({
   password: '',
 });
@@ -30,7 +32,7 @@ const { resetFields, validate, validateInfos } = useForm(
 const onSubmit = () => {
   validate()
     .then(res => {
-      console.log(res, toRaw(modelRef));
+      store.dispatch('resetPassword', {email: user?.email, password: modelRef.password} )
       resetFields();
     })
     .catch(err => {

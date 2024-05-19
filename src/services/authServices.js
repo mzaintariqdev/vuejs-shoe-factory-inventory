@@ -13,3 +13,34 @@ export const loginApiService = async (data) => {
   }
   return { error: 'Wrong username or password.' };
 };
+
+
+
+export const resetPasswordLinkApiService = async (data) => {
+  const { email } = data;
+  await sleep(2000);
+
+  const user = mockAuthUsers.find(
+    (u) => (u.email === email )
+  );
+
+  if (user) {
+    return { message: `Reset Password Link is send at your Email : ${email}` };
+  }
+  return { error: 'You have entered Wrong Email.' };
+};
+
+
+export const resetPasswordApiService = async (data) => {
+  const { email } = data;
+  await sleep(2000);
+
+  const user = mockAuthUsers.find(
+    (u) => (u.email === email )
+  );
+
+  if (user) {
+    return { message: `Your Password is reset` };
+  }
+  return { error: 'You have entered Wrong Email.' };
+};

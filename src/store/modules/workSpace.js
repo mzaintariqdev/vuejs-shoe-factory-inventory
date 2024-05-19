@@ -1,5 +1,5 @@
 import router from "@/routes/routes";
-import { loginApiService } from "@/services/authServices";
+import { loginApiService, resetPasswordApiService, resetPasswordLinkApiService } from "@/services/authServices";
 import showNotifications from "@/utils/helpers";
 import { jwtDecode } from "jwt-decode";
 
@@ -30,12 +30,49 @@ const workSpaceModule = {
     },
   },
   actions: {
+    async resetPassword({commit}, credentials) {
+      commit('SET_IS_LOADING', true);
+      try {
+        // Call the login API service
+        const response = await resetPasswordApiService(credentials);
+        if (response?.message) {
+          // Set user and authentication status if login is successful
+          showNotifications(response?.message);
+        } else {
+          showNotifications('Wrong Email Entered', true, 401);
+        }
+      } catch (error) {
+        // Handle network or server error
+        showNotifications('Something went wrong', true, 500);
+      } finally {
+        commit('SET_IS_LOADING', false);
+      }
+
+    },
+    async forgetPasswordLink({commit}, credentials) {
+      commit('SET_IS_LOADING', true);
+      try {
+        // Call the login API service
+        const response = await resetPasswordLinkApiService(credentials);
+        if (response?.message) {
+          // Set user and authentication status if login is successful
+          showNotifications(response?.message);
+        } else {
+          showNotifications('Wrong Email Entered', true, 401);
+        }
+      } catch (error) {
+        // Handle network or server error
+        showNotifications('Something went wrong', true, 500);
+      } finally {
+        commit('SET_IS_LOADING', false);
+      }
+
+    },
     async login({ commit }, credentials) {
       commit('SET_IS_LOADING', true);
       try {
         // Call the login API service
         const response = await loginApiService(credentials);
-        console.log(response)
         if (response.data) {
           // Set user and authentication status if login is successful
           showNotifications('Login successfully');

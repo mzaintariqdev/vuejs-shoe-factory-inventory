@@ -1,6 +1,6 @@
 export const mockEmployees = [
   {
-    id: '1',
+    id: 0,
     name: 'John Brown',
     email: 'employee1@gmail.com',
     department: 'Sales',
@@ -9,7 +9,7 @@ export const mockEmployees = [
     address: 'New York No. 1 Lake Park',
   },
   {
-    id: '2',
+    id: 1,
     name: 'Jim Green',
     email: 'employee2@gmail.com',
     department: 'HR',
@@ -18,7 +18,7 @@ export const mockEmployees = [
     address: 'London No. 1 Lake Park',
   },
   {
-    id: '3',
+    id: 2,
     name: 'Joe Black',
     email: 'employee3@gmail.com',
     department: 'Upper Man',
@@ -27,7 +27,7 @@ export const mockEmployees = [
     address: 'Sidney No. 1 Lake Park',
   },
   {
-    id: '5',
+    id: 3,
     name: 'John Brown',
     email: 'employee4@gmail.com',
     department: 'Bottom Man',
@@ -36,7 +36,7 @@ export const mockEmployees = [
     address: 'New York No. 1 Lake Park',
   },
   {
-    id: '5',
+    id: 4,
     name: 'Jim Green',
     email: 'employee5@gmail.com',
     department: 'Raw Material',

@@ -8,6 +8,7 @@
       :open="open"
       @closed="closeDrawer" 
     >
+  <a-spin :spinning="isLoading">
     <a-form layout="vertical" class="add-employee__form">
       <a-row gutter="12" class="input__container">
         <a-col span="12">
@@ -24,11 +25,12 @@
       <a-row gutter="12" class="input__container">
         <a-col span="12">
           <a-form-item class="add-employee__form-input" label="Department" v-bind="validateInfos['department']">
-            <a-select v-model:value="modelRef.department" placeholder="please select your zone">
-              <a-select-option value="shanghai">Zone one</a-select-option>
-              <a-select-option value="beijing">Zone two</a-select-option>
-            </a-select>
-          </a-form-item>
+        <a-select v-model:value="modelRef.department" placeholder="please select your department">
+          <a-select-option v-for="departmentOption in departmentOptions" :key="departmentOption.value" :value="departmentOption.value">
+            {{ departmentOption.label }}
+          </a-select-option>
+        </a-select>
+      </a-form-item>
         </a-col>
         <a-col span="12">
           <a-form-item class="add-employee__form-input" label="Password" v-bind="validateInfos['password']">
@@ -63,16 +65,21 @@
           <a-button  @click.prevent="closeDrawer" class="cancel-button">Close</a-button>
         </a-form-item>
       </div>
-  </a-form>
+    </a-form>
+  </a-spin>
     </Drawer>
   </div>
 </template>
 
 <script setup>
 import Drawer from '@/components/Drawer/Drawer.vue';
-import { reactive, toRaw } from 'vue';
+import { departmentOptions } from '@/utils/constants';
+import { computed, reactive, toRaw } from 'vue';
 import { Form } from 'ant-design-vue';
+import { useStore } from 'vuex';
 const useForm = Form.useForm;
+const store = useStore();
+const isLoading = computed(()=>store.getters.isOperationEmployeeLoading);
 const emits = defineEmits(['onDrawerClose']);
 const props = defineProps({
   open: {
@@ -165,9 +172,16 @@ const { resetFields, validate, validateInfos } = useForm(
 const onSubmit = () => {
   validate()
     .then(res => {
-      console.log(res, toRaw(modelRef));
+      store.dispatch('addEmployee', {
+          password: modelRef.password,
+          name: modelRef.name,
+          department: modelRef.department,
+          age: modelRef.age,
+          email: modelRef.email,
+          phoneNumber: modelRef.phoneNumber,
+          address: modelRef.address
+    })
       resetFields();
-      closeDrawer();
     })
     .catch(err => {
       console.log('error', err);

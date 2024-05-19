@@ -23,6 +23,12 @@ html {
     }
   }
 
+
+   .ant-spin-spinning {
+      max-height: unset !important;
+      @include mixins.style-flex-center-column;
+  }
+
   .ant-drawer.custom-drawer {
       .ant-drawer-content-wrapper {
         width: 100% !important;
