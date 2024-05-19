@@ -1,10 +1,10 @@
 <template>
   <a-row class="home-stats" gutter="12">
     <a-col>
-      <StatisticContainer title="Total Employees" value="4" :icon="UserOutlined"/>  
+      <StatisticContainer title="Total Employees" value="5" :icon="UserOutlined"/>  
     </a-col>
     <a-col>
-      <StatisticContainer title="Total Shoe Articles" value="10" :icon="FileTextOutlined"/>  
+      <StatisticContainer title="Total Shoe Articles" value="5" :icon="FileTextOutlined"/>  
     </a-col>
   </a-row>
 </template>
