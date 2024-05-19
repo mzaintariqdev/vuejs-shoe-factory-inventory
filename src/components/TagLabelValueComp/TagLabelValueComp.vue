@@ -7,7 +7,7 @@
         :key="index"
         :color="color"
       >
-        {{ color }}
+        {{ color==="#FFE5B4"? 'Peach':color }}
       </a-tag>
     </div>
   </div>

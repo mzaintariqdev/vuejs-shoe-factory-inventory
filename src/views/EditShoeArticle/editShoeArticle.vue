@@ -1,63 +1,70 @@
 <template>
-  <div class="edit-show-article__container">
-      <p class="edit-show-article__container-heading">
-        Edit Shoe Article
-      </p>
-      <a-form layout="vertical" class="edit-show-article__container-form">
-      <a-row gutter="12" class="input__container">
-        <a-col span="12">
-          <a-form-item class="edit-shoe-article__form-input" label="Name" v-bind="validateInfos['name']">
-            <a-input v-model:value="modelRef.name" />
+  <a-spin :spinning="isLoading">
+    <div class="edit-show-article__container">
+        <p class="edit-show-article__container-heading">
+          Edit Shoe Article
+        </p>
+        <a-form layout="vertical" class="edit-show-article__container-form">
+        <a-row gutter="12" class="input__container">
+          <a-col span="12">
+            <a-form-item class="edit-shoe-article__form-input" label="Name" v-bind="validateInfos['name']">
+              <a-input v-model:value="modelRef.name" />
+            </a-form-item>
+          </a-col>
+          <a-col span="12">
+            <a-form-item class="edit-shoe-article__form-input" label="Article No" v-bind="validateInfos['articleNo']">
+              <a-input v-model:value="modelRef.articleNo" />
+            </a-form-item>
+          </a-col>
+        </a-row>
+        <a-row gutter="12" class="input__container">
+          <a-col span="12">
+              <a-form-item class="add-shoe-article__form-input" label="Type" v-bind="validateInfos['type']">
+                <a-select v-model:value="modelRef.type" placeholder="please select Type">
+                  <a-select-option v-for="typeOption in typeOptions" :key="typeOption.value" :value="typeOption.value">
+                    {{ typeOption.label }}
+                  </a-select-option>
+                </a-select>
+              </a-form-item>
+            </a-col>
+            <a-col span="12">
+              <a-form-item class="add-shoe-article__form-input" label="Colors" v-bind="validateInfos['colors']">
+                <a-select
+                  v-model:value="modelRef.colors"
+                  mode="multiple"
+                  placeholder="Please select"
+                  :options="colorOptions"
+                >
+                </a-select>
+              </a-form-item>
+            </a-col>
+        </a-row>
+        <div class="actions">
+          <a-form-item>
+            <a-button type="primary" @click.prevent="onSubmit" class="edit-show-article-button">Update</a-button>
           </a-form-item>
-        </a-col>
-        <a-col span="12">
-          <a-form-item class="edit-shoe-article__form-input" label="Article No" v-bind="validateInfos['articleNo']">
-            <a-input v-model:value="modelRef.articleNo" />
+          <a-form-item>
+            <a-button  @click.prevent="goBack" class="cancel-button">Go Back</a-button>
           </a-form-item>
-        </a-col>
-      </a-row>
-      <a-row gutter="12" class="input__container">
-        <a-col span="12">
-          <a-form-item class="edit-shoe-article__form-input" label="Type" v-bind="validateInfos['type']">
-            <a-select v-model:value="modelRef.type" placeholder="please select Type">
-              <a-select-option value="shanghai">Zone one</a-select-option>
-              <a-select-option value="beijing">Zone two</a-select-option>
-            </a-select>
-          </a-form-item>
-        </a-col>
-        <a-col span="12">
-          <a-form-item class="edit-shoe-article__form-input" label="Colors" v-bind="validateInfos['colors']">
-            <a-select
-              v-model:value="modelRef.colors"
-              mode="multiple"
-              placeholder="Please select"
-              :options="[...Array(25)].map((_, i) => ({ value: (i + 10).toString(36) + (i + 1) }))"
-            >
-            </a-select>
-          </a-form-item>
-        </a-col>
-      </a-row>
-      <div class="actions">
-        <a-form-item>
-          <a-button type="primary" @click.prevent="onSubmit" class="edit-show-article-button">Update</a-button>
-        </a-form-item>
-        <a-form-item>
-          <a-button  @click.prevent="goBack" class="cancel-button">Go Back</a-button>
-        </a-form-item>
-      </div>
-  </a-form>
-  </div>
-
+        </div>
+    </a-form>
+    </div>
+  </a-spin>
 </template>
 
 <script setup>
-import { reactive, toRaw } from 'vue';
+import { computed, reactive, onMounted, watch } from 'vue';
 import { Form } from 'ant-design-vue';
-import { useRouter } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import { shoeArticlesUrl } from '@/routes/urls';
+import { colorOptions, typeOptions } from '@/utils/constants';
+import { useStore } from 'vuex';
 const useForm = Form.useForm;
 const router = useRouter();
-
+const route = useRoute();
+const store = useStore();
+const shoeArticleId = route.params.id;
+const isLoading = computed(()=>store.getters.isShoeArticleLoading);
 const modelRef = reactive({
   name: '',
   articleNo: '',
@@ -114,8 +121,13 @@ const { resetFields, validate, validateInfos } = useForm(
 const onSubmit = () => {
   validate()
     .then(res => {
-      console.log(res, toRaw(modelRef));
-      resetFields();
+      store.dispatch('updateShoeArticle', {
+          id: Number(shoeArticleId),
+          colors: modelRef.colors,
+          name: modelRef.name,
+          articleNo: modelRef.articleNo,
+          type: modelRef.type,
+    });
     })
     .catch(err => {
       console.log('error', err);
@@ -127,6 +139,24 @@ const goBack = () => {
   resetFields();
   router.push(shoeArticlesUrl);
 };
+
+
+onMounted(() => {
+  store.dispatch('fetchShoeArticleById', shoeArticleId);
+});
+
+watch(
+  () => store.getters.getShoeArticleById,
+  (shoeArticle) => {
+    if (shoeArticle) {
+      modelRef.name = shoeArticle.name;
+      modelRef.colors = shoeArticle.colors;
+      modelRef.type = shoeArticle.type;
+      modelRef.articleNo = shoeArticle.articleNo;
+    }
+  },
+  { immediate: true }
+);
 
 </script>
 
