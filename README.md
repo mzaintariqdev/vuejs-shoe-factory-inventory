@@ -4,7 +4,7 @@ An inventory management Frontend application for a shoe factory, built with Vue.
 
 ## Description
 
-This project focuses on creating a responsive and user-friendly UI/UX using Vue.js and Ant Design Vue for reusable components. It includes role-based authentication with mock APIs and state management implemented via Vuex. The application is deployed and accessible at the following link:
+This project focuses on creating a responsive and user-friendly UI/UX using Vue.js and Ant Design Vue for reusable components. It includes role-based authentication with mock APIs and state management implemented via Vuex so no backend is attached only a FE is included in this project. The application is deployed and accessible at the following link:
 
 [Access the Application](https://shoe-inventory-vue.netlify.app/)
 
